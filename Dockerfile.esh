@@ -1,0 +1,14 @@
+FROM bfren/alpine-s6:alpine<%= ${ALPINE_MINOR} %>-<%= ${BASE_REVISION} %>
+
+ARG BF_IMAGE
+ARG BF_VERSION
+
+EXPOSE 80
+
+COPY ./overlay /
+COPY ./<%= ${NODE_MAJOR} %>/NODE_BUILD /tmp/
+COPY ./<%= ${NODE_MAJOR} %>/YARN_BUILD /tmp/
+
+RUN bf-install
+
+VOLUME [ "/ws" ]
