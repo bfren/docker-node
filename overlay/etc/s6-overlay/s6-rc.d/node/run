@@ -5,8 +5,8 @@ export BF_E="${PWD##*/}/$(basename ${0})"
 
 
 #======================================================================================================================
-# Run as NodeJS user.
+# Run as Node.js user.
 #======================================================================================================================
 
-bf-echo "Starting NodeJS server."
+bf-echo "Starting Node.js server."
 s6-setuidgid node node ${NODE_APP_LIVE}/index.js
