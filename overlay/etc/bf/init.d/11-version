@@ -5,16 +5,12 @@ export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Output .NET Version.
+# Output NodeJS Versions.
 #======================================================================================================================
 
-# Get version:
-#   - get list of installed runtimes
-#   - get the line with the version on
-#   - strip out everything except numbers and full stops
-#   - trim full stops from start of string
-#   - trim full stops from end of string
-VERSION=`dotnet --list-runtimes | grep "NETCore.App" | sed 's/[^0-9\.]*//g' | sed 's/^\.*//g' | sed 's/\.*$//g'`
+NODE_VERSION=`node --version`
+NPM_VERSION=`npm --version`
+YARN_VERSION=`yarn --version`
 
 # output nicely
-bf-echo ".NET ${VERSION} is installed."
+bf-echo "NodeJS v${NODE_VERSION} installed, with NPM v${NPM_VERSION} and Yarn v${YARN_VERSION}."
