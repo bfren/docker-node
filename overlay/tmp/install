@@ -32,7 +32,7 @@ bf-echo "Yarn version ${YARN_VERSION}."
 #======================================================================================================================
 
 bf-echo "Installing NodeJS v${NODE_VERSION}..."
-chmod +x ./install-node && ./install-node ${VERSION}
+chmod +x ./install-node && ./install-node ${NODE_VERSION}
 bf-done
 
 bf-echo "Installing additional packages..."
