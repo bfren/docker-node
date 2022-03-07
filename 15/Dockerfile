@@ -1,4 +1,4 @@
-FROM bfren/alpine-s6:alpine3.15-4.0.10
+FROM bfren/alpine-s6:alpine3.13-4.0.10
 
 ARG BF_IMAGE
 ARG BF_VERSION
@@ -6,7 +6,7 @@ ARG BF_VERSION
 EXPOSE 3000
 
 COPY ./overlay /
-COPY ./16/overlay /
+COPY ./15/overlay /
 
 RUN bf-install
 
