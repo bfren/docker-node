@@ -32,10 +32,13 @@ bf-echo "Yarn version ${YARN_VERSION}."
 #======================================================================================================================
 
 bf-echo "Installing NodeJS v${NODE_VERSION}..."
+chmod +x ./install-node && ./install-node ${VERSION}
+bf-done
 
+bf-echo "Installing additional packages..."
 apk add --no-cache \
-    nodejs=${NODE_VERSION} \
     npm=${NPM_VERSION} \
     yarn=${YARN_VERSION}
+bf-done
 
 bf-done
