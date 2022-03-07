@@ -10,4 +10,4 @@ COPY ./<%= ${NODE_MAJOR} %>/overlay /
 
 RUN bf-install
 
-VOLUME [ "/app/live", "/app/publish" ]
+VOLUME [ "/app/live" ]
