@@ -8,4 +8,4 @@ export BF_E=`basename ${0}`
 # Output NodeJS Versions.
 #======================================================================================================================
 
-bf-echo "`cat ${INIT_VERSION}`"
+bf-echo "`cat /${INIT_VERSION}`"
