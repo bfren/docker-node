@@ -1,4 +1,4 @@
-name: dev-16
+name: dev-17
 
 on:
   push:
@@ -7,13 +7,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-16:
+  test-17:
     runs-on: ubuntu-latest
     steps:
       -
         name: Checkout code
         uses: actions/checkout@v2
-  build-16:
+  build-17:
     runs-on: ubuntu-latest
     steps:
       -
@@ -47,15 +47,16 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./16/Dockerfile
+          file: ./17/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: ${{ startsWith(github.ref, 'refs/heads/') }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bfren/node:node16-dev
-            bfren/node:node16-${{ steps.version.outputs.contents }}-beta
+            bfren/node:dev
+            bfren/node:node17-dev
+            bfren/node:node17-${{ steps.version.outputs.contents }}-beta
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

@@ -23,12 +23,6 @@ jobs:
           file: ./16/NODE_MINOR
         id: node_minor
       -
-        name: Read NodeJS version - build
-        uses: bfren/read-file@v1
-        with:
-          file: ./16/NODE_BUILD
-        id: node_build
-      -
         name: Read image version
         uses: bfren/read-file@v1
         with:
@@ -71,14 +65,12 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bfren/node:latest
             bfren/node:node16
             bfren/node:node16-${{ steps.version_major.outputs.contents }}
             bfren/node:node16-${{ steps.version_minor.outputs.contents }}
             bfren/node:node16-${{ steps.version.outputs.contents }}
             bfren/node:node${{ steps.node_minor.outputs.contents }}
             bfren/node:node${{ steps.node_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
-            bfren/node:node${{ steps.node_build.outputs.contents }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

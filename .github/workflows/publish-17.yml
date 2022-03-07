@@ -1,19 +1,12 @@
-name: dev-16
+name: publish-17
 
 on:
-  push:
-    branches: ['**']
-    tags-ignore: ['**']
+  release:
+    types: [published]
   workflow_dispatch:
 
 jobs:
-  test-16:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Checkout code
-        uses: actions/checkout@v2
-  build-16:
+  publish-17:
     runs-on: ubuntu-latest
     steps:
       -
@@ -23,6 +16,24 @@ jobs:
         name: Get repository name
         run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
         shell: bash
+      -
+        name: Read NodeJS version - minor
+        uses: bfren/read-file@v1
+        with:
+          file: ./17/NODE_MINOR
+        id: node_minor
+      -
+        name: Read image version
+        uses: bfren/read-file@v1
+        with:
+          file: ./VERSION_MAJOR
+        id: version_major
+      -
+        name: Read image version
+        uses: bfren/read-file@v1
+        with:
+          file: ./VERSION_MINOR
+        id: version_minor
       -
         name: Read image version
         uses: bfren/read-file@v1
@@ -47,15 +58,20 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./16/Dockerfile
+          file: ./17/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
-          push: ${{ startsWith(github.ref, 'refs/heads/') }}
+          push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bfren/node:node16-dev
-            bfren/node:node16-${{ steps.version.outputs.contents }}-beta
+            bfren/node:latest
+            bfren/node:node17
+            bfren/node:node17-${{ steps.version_major.outputs.contents }}
+            bfren/node:node17-${{ steps.version_minor.outputs.contents }}
+            bfren/node:node17-${{ steps.version.outputs.contents }}
+            bfren/node:node${{ steps.node_minor.outputs.contents }}
+            bfren/node:node${{ steps.node_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
