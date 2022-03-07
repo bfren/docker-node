@@ -21,7 +21,7 @@ NODE_VERSION=$(cat NODE_BUILD)
 bf-echo "NodeJS version ${NODE_VERSION}."
 
 NPM_VERSION=$(cat NPM_BUILD)
-bf-echo "NodeJS Packacge Manager version ${NPM_VERSION}."
+bf-echo "NodeJS Package Manager version ${NPM_VERSION}."
 
 YARN_VERSION=$(cat YARN_BUILD)
 bf-echo "Yarn version ${YARN_VERSION}."
