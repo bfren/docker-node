@@ -42,3 +42,13 @@ apk add --no-cache \
 bf-done
 
 bf-done
+
+
+#======================================================================================================================
+# Create version message to output on startup (saves approx. 1s).
+#======================================================================================================================
+
+NODE_VERSION=`node --version`
+NPM_VERSION=`npm --version`
+YARN_VERSION=`yarn --version`
+echo "NodeJS ${NODE_VERSION} installed, with NPM v${NPM_VERSION} and Yarn v${YARN_VERSION}." >> /INIT_VERSION

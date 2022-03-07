@@ -8,9 +8,4 @@ export BF_E=`basename ${0}`
 # Output NodeJS Versions.
 #======================================================================================================================
 
-NODE_VERSION=`node --version`
-NPM_VERSION=`npm --version`
-YARN_VERSION=`yarn --version`
-
-# output nicely
-bf-echo "NodeJS ${NODE_VERSION} installed, with NPM v${NPM_VERSION} and Yarn v${YARN_VERSION}."
+bf-echo "`cat ${INIT_VERSION}`"
