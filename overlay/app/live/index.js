@@ -1,17 +1,21 @@
 // Import http module
-var http = require( 'http' );
+const http = require( 'http' );
 
-// Create server to return welcome message
-http
-    .createServer(
-        function( req, res ) {
-            res.writeHead( 200, { 'Content-Type': 'text/html' } );
-            res.write( '<!DOCTYPE html><html>' );
-            res.write( '<head><title>Welcome</title><style type="text/css">* { font-family: Arial, sans-serif; }</style></head>' );
-            res.write( '<body><p>Welcome to Node.</p></body>' );
-            res.end( '</html>' );
-        }
-    )
-    .listen(
-        3000
-    );
+// Hosting values
+const hostname = '127.0.0.1';
+const port = 3000;
+
+// Create server
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.write('<!DOCTYPE html><html>');
+    res.write('<head><title>Welcome</title><style type="text/css">* { font-family: Arial, sans-serif; }</style></head>');
+    res.write('<body><p>Welcome to Node.js.</p></body>');
+    res.end('</html>');
+});
+
+// Listen to specified address
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
