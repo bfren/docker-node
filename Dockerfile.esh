@@ -7,6 +7,7 @@ EXPOSE 3000
 
 COPY ./overlay /
 COPY ./<%= ${NODE_MAJOR} %>/NODE_BUILD /tmp/
+COPY ./<%= ${NODE_MAJOR} %>/NPM_BUILD /tmp/
 COPY ./<%= ${NODE_MAJOR} %>/YARN_BUILD /tmp/
 
 RUN bf-install

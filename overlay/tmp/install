@@ -20,6 +20,9 @@ cd /tmp
 NODE_VERSION=$(cat NODE_BUILD)
 bf-echo "NodeJS version ${NODE_VERSION}."
 
+NPM_VERSION=$(cat NPM_BUILD)
+bf-echo "NodeJS Packacge Manager version ${NPM_VERSION}."
+
 YARN_VERSION=$(cat YARN_BUILD)
 bf-echo "Yarn version ${YARN_VERSION}."
 
@@ -32,6 +35,7 @@ bf-echo "Installing NodeJS v${NODE_VERSION}..."
 
 apk add --no-cache \
     nodejs=${NODE_VERSION} \
+    npm=${NPM_VERSION} \
     yarn=${YARN_VERSION}
 
 bf-done
