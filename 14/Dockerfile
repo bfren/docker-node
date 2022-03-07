@@ -10,4 +10,4 @@ COPY ./14/overlay /
 
 RUN bf-install
 
-VOLUME [ "/app/live", "/app/publish" ]
+VOLUME [ "/app/live" ]
