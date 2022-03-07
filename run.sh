@@ -8,7 +8,7 @@ chmod +x run.sh
 docker buildx build \
     --build-arg BF_IMAGE=node \
     --build-arg BF_VERSION=${VERSION} \
-    -f 16/Dockerfile \
+    -f ${1:-17}/Dockerfile \
     -t node-dev \
     . \
     && \
