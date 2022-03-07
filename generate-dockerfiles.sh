@@ -10,7 +10,7 @@ echo "Base: ${BASE_REVISION}"
 NODE_VERSIONS="14 16 17"
 for V in ${NODE_VERSIONS} ; do
 
-    echo "NodeJS ${V}"
+    echo "Node.js ${V}"
     ALPINE_MINOR=`cat ./${V}/ALPINE_MINOR`
 
     DOCKERFILE=$(docker run \
