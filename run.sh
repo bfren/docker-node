@@ -1,15 +1,16 @@
 #!/bin/sh
 
-VERSION=`cat VERSION`
+IMAGE=`cat VERSION`
+NODE=${1:-17}
 
 git pull || exit 1
 chmod +x run.sh
 
 docker buildx build \
     --build-arg BF_IMAGE=node \
-    --build-arg BF_VERSION=${VERSION} \
-    -f ${1:-17}/Dockerfile \
-    -t node-dev \
+    --build-arg BF_VERSION=${IMAGE} \
+    -f ${NODE}/Dockerfile \
+    -t node${NODE}-dev \
     . \
     && \
-    docker run -it node-dev sh
+    docker run -it node${NODE}-dev sh
