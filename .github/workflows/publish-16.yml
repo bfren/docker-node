@@ -20,7 +20,7 @@ jobs:
         name: Read Node.js version - minor
         uses: bfren/read-file@v1
         with:
-          file: ./16/NODE_MINOR
+          file: ./16/overlay/tmp/NODE_MINOR
         id: node_minor
       -
         name: Read image version
