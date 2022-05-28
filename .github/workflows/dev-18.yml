@@ -1,12 +1,19 @@
-name: publish-17
+name: dev-18
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: ['**']
+    tags-ignore: ['**']
   workflow_dispatch:
 
 jobs:
-  publish-17:
+  test-18:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout code
+        uses: actions/checkout@v3
+  build-18:
     runs-on: ubuntu-latest
     steps:
       -
@@ -16,24 +23,6 @@ jobs:
         name: Get repository name
         run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
         shell: bash
-      -
-        name: Read Node.js version - minor
-        uses: bfren/read-file@v1
-        with:
-          file: ./17/overlay/tmp/NODE_MINOR
-        id: node_minor
-      -
-        name: Read image version
-        uses: bfren/read-file@v1
-        with:
-          file: ./VERSION_MAJOR
-        id: version_major
-      -
-        name: Read image version
-        uses: bfren/read-file@v1
-        with:
-          file: ./VERSION_MINOR
-        id: version_minor
       -
         name: Read image version
         uses: bfren/read-file@v1
@@ -65,25 +54,17 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./17/Dockerfile
+          file: ./18/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
-          push: true
+          push: ${{ startsWith(github.ref, 'refs/heads/') }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bfren/node:node17
-            bfren/node:node17-${{ steps.version_major.outputs.contents }}
-            bfren/node:node17-${{ steps.version_minor.outputs.contents }}
-            bfren/node:node17-${{ steps.version.outputs.contents }}
-            bfren/node:node${{ steps.node_minor.outputs.contents }}
-            bfren/node:node${{ steps.node_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
-            ghcr.io/bfren/node:node17
-            ghcr.io/bfren/node:node17-${{ steps.version_major.outputs.contents }}
-            ghcr.io/bfren/node:node17-${{ steps.version_minor.outputs.contents }}
-            ghcr.io/bfren/node:node17-${{ steps.version.outputs.contents }}
-            ghcr.io/bfren/node:node${{ steps.node_minor.outputs.contents }}
-            ghcr.io/bfren/node:node${{ steps.node_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
+            bfren/node:node18-dev
+            bfren/node:node18-${{ steps.version.outputs.contents }}-beta
+            ghcr.io/bfren/node:node18-dev
+            ghcr.io/bfren/node:node18-${{ steps.version.outputs.contents }}-beta
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
