@@ -5,11 +5,7 @@ LABEL org.opencontainers.image.source="https://github.com/bfren/docker-node"
 ARG BF_IMAGE
 ARG BF_VERSION
 
-ENV \
-    # the port to attach the Node.js server to
-    NODE_PORT=3000
-
-EXPOSE ${NODE_PORT}
+EXPOSE 3000
 
 COPY ./overlay /
 COPY ./<%= ${NODE_MAJOR} %>/overlay /
