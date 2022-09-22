@@ -1,5 +1,5 @@
 // Import http module
-const http = require( 'http' );
+const http = require('http');
 
 // Hosting values
 const hostname = '127.0.0.1';
