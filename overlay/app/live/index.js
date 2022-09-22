@@ -1,5 +1,5 @@
 // Import http module
-import { createServer } from 'http';
+const http = require('http');
 
 // Hosting values
 const hostname = '127.0.0.1';
