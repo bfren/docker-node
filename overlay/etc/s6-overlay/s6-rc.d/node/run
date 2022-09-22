@@ -9,4 +9,4 @@ export BF_E="${PWD##*/}/$(basename ${0})"
 #======================================================================================================================
 
 bf-echo "Starting Node.js server."
-s6-setuidgid node /command/with-contenv node ${NODE_RUN}
+s6-setuidgid node node ${NODE_RUN}
