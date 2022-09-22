@@ -10,6 +10,10 @@ export BF_E=`basename ${0}`
 
 # app directories
 NODE_APP=/app
+NODE_APP_LIVE=${NODE_APP}/live
 bf-env "NODE_APP" "${NODE_APP}"
-bf-env "NODE_APP_LIVE" "${NODE_APP}/live"
+bf-env "NODE_APP_LIVE" "${NODE_APP_LIVE}"
 bf-env "NODE_APP_PUBLISH" "${NODE_APP}/publish"
+
+# run file
+bf-end "NODE_RUN" "${NODE_APP_LIVE}/index.js"
