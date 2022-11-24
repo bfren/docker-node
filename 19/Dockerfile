@@ -8,7 +8,7 @@ ARG BF_VERSION
 EXPOSE 3000
 
 COPY ./overlay /
-COPY ./18/overlay /
+COPY ./19/overlay /
 
 RUN bf-install
 

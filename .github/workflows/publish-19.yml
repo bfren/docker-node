@@ -1,4 +1,4 @@
-name: publish-18
+name: publish-19
 
 on:
   release:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish-18:
+  publish-19:
     runs-on: ubuntu-latest
     steps:
       -
@@ -20,7 +20,7 @@ jobs:
         name: Read Node.js version - minor
         uses: bfren/read-file@v2
         with:
-          file: ./18/overlay/tmp/NODE_MINOR
+          file: ./19/overlay/tmp/NODE_MINOR
         id: node_minor
       -
         name: Read image version
@@ -65,23 +65,25 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./18/Dockerfile
+          file: ./19/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: true
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm64
           tags: |
-            bfren/node:node18
-            bfren/node:node18-${{ steps.version_major.outputs.contents }}
-            bfren/node:node18-${{ steps.version_minor.outputs.contents }}
-            bfren/node:node18-${{ steps.version.outputs.contents }}
+            bfren/node:latest
+            bfren/node:node19
+            bfren/node:node19-${{ steps.version_major.outputs.contents }}
+            bfren/node:node19-${{ steps.version_minor.outputs.contents }}
+            bfren/node:node19-${{ steps.version.outputs.contents }}
             bfren/node:node${{ steps.node_minor.outputs.contents }}
             bfren/node:node${{ steps.node_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
-            ghcr.io/bfren/node:node18
-            ghcr.io/bfren/node:node18-${{ steps.version_major.outputs.contents }}
-            ghcr.io/bfren/node:node18-${{ steps.version_minor.outputs.contents }}
-            ghcr.io/bfren/node:node18-${{ steps.version.outputs.contents }}
+            ghcr.io/bfren/node:latest
+            ghcr.io/bfren/node:node19
+            ghcr.io/bfren/node:node19-${{ steps.version_major.outputs.contents }}
+            ghcr.io/bfren/node:node19-${{ steps.version_minor.outputs.contents }}
+            ghcr.io/bfren/node:node19-${{ steps.version.outputs.contents }}
             ghcr.io/bfren/node:node${{ steps.node_minor.outputs.contents }}
             ghcr.io/bfren/node:node${{ steps.node_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
       -

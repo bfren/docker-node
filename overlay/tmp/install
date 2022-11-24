@@ -41,8 +41,6 @@ apk add --no-cache \
     yarn=${YARN_VERSION}
 bf-done
 
-bf-done
-
 
 #======================================================================================================================
 # Create version message to output on startup (saves approx. 1s).
