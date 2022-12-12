@@ -1,4 +1,4 @@
-name: publish-16
+name: publish
 
 on:
   release:
@@ -6,7 +6,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish-16:
+  publish:
+    strategy:
+      matrix:
+        node: [ "14", "16", "17", "18", "19" ]
     runs-on: ubuntu-latest
     steps:
       -
@@ -20,7 +23,7 @@ jobs:
         name: Read Node.js version - minor
         uses: bfren/read-file@v2
         with:
-          file: ./16/overlay/tmp/NODE_MINOR
+          file: ./${{ matrix.node }}/overlay/tmp/NODE_MINOR
         id: node_minor
       -
         name: Read image version
@@ -65,25 +68,43 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./16/Dockerfile
+          file: ./${{ matrix.node }}/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: true
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm64
           tags: |
-            bfren/node:node16
-            bfren/node:node16-${{ steps.version_major.outputs.contents }}
-            bfren/node:node16-${{ steps.version_minor.outputs.contents }}
-            bfren/node:node16-${{ steps.version.outputs.contents }}
+            bfren/node:node${{ matrix.node }}
+            bfren/node:node${{ matrix.node }}-${{ steps.version_major.outputs.contents }}
+            bfren/node:node${{ matrix.node }}-${{ steps.version_minor.outputs.contents }}
+            bfren/node:node${{ matrix.node }}-${{ steps.version.outputs.contents }}
             bfren/node:node${{ steps.node_minor.outputs.contents }}
             bfren/node:node${{ steps.node_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
-            ghcr.io/bfren/node:node16
-            ghcr.io/bfren/node:node16-${{ steps.version_major.outputs.contents }}
-            ghcr.io/bfren/node:node16-${{ steps.version_minor.outputs.contents }}
-            ghcr.io/bfren/node:node16-${{ steps.version.outputs.contents }}
+            ghcr.io/bfren/node:node${{ matrix.node }}
+            ghcr.io/bfren/node:node${{ matrix.node }}-${{ steps.version_major.outputs.contents }}
+            ghcr.io/bfren/node:node${{ matrix.node }}-${{ steps.version_minor.outputs.contents }}
+            ghcr.io/bfren/node:node${{ matrix.node }}-${{ steps.version.outputs.contents }}
             ghcr.io/bfren/node:node${{ steps.node_minor.outputs.contents }}
             ghcr.io/bfren/node:node${{ steps.node_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
+      -
+        name: Build and push default
+        id: docker_build_default
+        if: matrix.node == '18'
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./${{ matrix.node }}/Dockerfile
+          build-args: |
+            BF_IMAGE=${{ env.REPOSITORY_NAME }}
+            BF_VERSION=${{ steps.version.outputs.contents }}
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            bfren/node:latest
+            bfren/node:${{ steps.version.outputs.contents }}
+            ghcr.io/bfren/node:latest
+            ghcr.io/bfren/node:${{ steps.version.outputs.contents }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
