@@ -1,4 +1,4 @@
-name: dev-16
+name: dev
 
 on:
   push:
@@ -7,13 +7,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-16:
+  test:
     runs-on: ubuntu-latest
     steps:
       -
         name: Checkout code
         uses: actions/checkout@v3
-  build-16:
+  build:
+    strategy:
+      matrix:
+        node: [ "14", "16", "17", "18", "19" ]
     runs-on: ubuntu-latest
     steps:
       -
@@ -54,17 +57,17 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./16/Dockerfile
+          file: ./${{ matrix.node }}/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: ${{ startsWith(github.ref, 'refs/heads/') }}
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm64
           tags: |
-            bfren/node:node16-dev
-            bfren/node:node16-${{ steps.version.outputs.contents }}-beta
-            ghcr.io/bfren/node:node16-dev
-            ghcr.io/bfren/node:node16-${{ steps.version.outputs.contents }}-beta
+            bfren/node:node${{ matrix.node }}-dev
+            bfren/node:node${{ matrix.node }}-${{ steps.version.outputs.contents }}-beta
+            ghcr.io/bfren/node:node${{ matrix.node }}-dev
+            ghcr.io/bfren/node:node${{ matrix.node }}-${{ steps.version.outputs.contents }}-beta
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
