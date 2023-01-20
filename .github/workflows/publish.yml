@@ -8,7 +8,7 @@ on:
 jobs:
   publish:
     strategy:
-      fail-false: false
+      fail-fast: false
       matrix:
         node: [ "14", "16", "17", "18", "19" ]
     runs-on: ubuntu-latest
