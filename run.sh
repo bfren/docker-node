@@ -1,7 +1,7 @@
 #!/bin/sh
 
 IMAGE=`cat VERSION`
-NODE=${1:-17}
+NODE=${1:-20}
 
 docker buildx build \
     --build-arg BF_IMAGE=node \
