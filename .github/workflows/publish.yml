@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [ "14", "16", "17", "18", "19" ]
+        node: [ "14", "16", "17", "18", "19", "20" ]
     runs-on: ubuntu-latest
     steps:
       -
@@ -78,7 +78,7 @@ jobs:
       -
         name: Build and push default
         id: docker_build_default
-        if: matrix.node == '18'
+        if: matrix.node == '20'
         uses: docker/build-push-action@v4
         with:
           context: .
