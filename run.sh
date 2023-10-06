@@ -4,6 +4,7 @@ IMAGE=`cat VERSION`
 NODE=${1:-20}
 
 docker buildx build \
+    --load \
     --build-arg BF_IMAGE=node \
     --build-arg BF_VERSION=${IMAGE} \
     -f ${NODE}/Dockerfile \
