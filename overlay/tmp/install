@@ -25,4 +25,7 @@ def main [] {
     # save versions to text file for init - saves approx. 1s
     let versions = $"Node.js (^node --version) installed with NPM (^npm --version)."
     $versions | save --force $"(bf env ETC)/INIT_VERSIONS"
+
+    # add bf-node module to config
+    bf config use bf-node
 }
