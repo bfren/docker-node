@@ -18,7 +18,7 @@ for V in ${NODE_VERSIONS} ; do
         -e BF_DEBUG=0 \
         bfren/alpine esh \
         "/ws/Dockerfile.esh" \
-        BASE_REVISION=${BASE_REVISION} \
+        BASE_VERSION=${BASE_VERSION} \
         ALPINE_EDITION=${ALPINE_MINOR} \
         NODE_MAJOR=${V}
     )
