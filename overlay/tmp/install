@@ -9,9 +9,9 @@ def main [] {
 
     # get Node.js versions and install
     cd /tmp
-    let node_version = bf fs read ./NODE_BUILD
-    let node_package = bf fs read ./NODE_PKG
-    let npm_version = bf fs read ./NPM_BUILD
+    let node_version = bf fs read NODE_BUILD
+    let node_package = bf fs read NODE_PKG
+    let npm_version = bf fs read NPM_BUILD
     bf write $"Installing Node.js v($node_version) and NPM v($npm_version)."
     bf pkg install [
         $"($node_package)=($node_version)"
