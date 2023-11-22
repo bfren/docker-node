@@ -1,52 +1,31 @@
-#!/bin/sh
+#!/usr/bin/nu
 
-set -euo pipefail
-export BF_E=`basename ${0}`
+use bf
 
+# Setup and install Node.js
+def main [] {
+    # add Node.js user
+    bf user add node
 
-#======================================================================================================================
-# Add Node.js user.
-#======================================================================================================================
+    # get Node.js versions and install
+    cd /tmp
+    let node_version = bf fs read NODE_BUILD
+    let node_package = bf fs read NODE_PKG
+    let npm_version = bf fs read NPM_BUILD
+    bf write $"Installing Node.js v($node_version) and NPM v($npm_version)."
+    bf pkg install [
+        $"($node_package)=($node_version)"
+        $"npm=($npm_version)"
+    ]
 
-bf-adduser node
+    # save versions to build log
+    bf build add "NPM" $npm_version
+    bf build add "Node.js" $node_version
 
+    # save versions to text file for init - saves approx. 1s
+    let versions = $"Node.js (^node --version) installed with NPM (^npm --version)."
+    $versions | save --force $"(bf env ETC)/INIT_VERSIONS"
 
-#======================================================================================================================
-# Get Node.js versions.
-#======================================================================================================================
-
-cd /tmp
-
-NODE_VERSION=$(cat NODE_BUILD)
-bf-echo "Node.js version ${NODE_VERSION}."
-
-NPM_VERSION=$(cat NPM_BUILD)
-bf-echo "Node Package Manager version ${NPM_VERSION}."
-
-YARN_VERSION=$(cat YARN_BUILD)
-bf-echo "Yarn version ${YARN_VERSION}."
-
-
-#======================================================================================================================
-# Install Node.js and dependencies.
-#======================================================================================================================
-
-bf-echo "Installing Node.js v${NODE_VERSION}..."
-chmod +x ./install-node && ./install-node ${NODE_VERSION}
-bf-done
-
-bf-echo "Installing additional packages..."
-apk add --no-cache \
-    npm=${NPM_VERSION} \
-    yarn=${YARN_VERSION}
-bf-done
-
-
-#======================================================================================================================
-# Create version message to output on startup (saves approx. 1s).
-#======================================================================================================================
-
-NODE_VERSION=`node --version`
-NPM_VERSION=`npm --version`
-YARN_VERSION=`yarn --version`
-echo "Node.js ${NODE_VERSION} installed, with NPM v${NPM_VERSION} and Yarn v${YARN_VERSION}." >> /INIT_VERSION
+    # add bf-node module to config
+    bf config use bf-node
+}

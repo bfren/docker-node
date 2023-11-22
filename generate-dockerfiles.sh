@@ -4,10 +4,10 @@ set -euo pipefail
 
 docker pull bfren/alpine
 
-BASE_REVISION="4.5.9"
-echo "Base: ${BASE_REVISION}"
+BASE_VERSION="5.0.0"
+echo "Base: ${BASE_VERSION}"
 
-NODE_VERSIONS="14 16 17 18 19 20"
+NODE_VERSIONS="16 17 18 19 20"
 for V in ${NODE_VERSIONS} ; do
 
     echo "Node.js ${V}"
@@ -18,8 +18,8 @@ for V in ${NODE_VERSIONS} ; do
         -e BF_DEBUG=0 \
         bfren/alpine esh \
         "/ws/Dockerfile.esh" \
-        BASE_REVISION=${BASE_REVISION} \
-        ALPINE_MINOR=${ALPINE_MINOR} \
+        BASE_VERSION=${BASE_VERSION} \
+        ALPINE_EDITION=${ALPINE_MINOR} \
         NODE_MAJOR=${V}
     )
 
