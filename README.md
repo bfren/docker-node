@@ -4,7 +4,7 @@
 
 [Docker Repository](https://hub.docker.com/r/bfren/nginx-webdav) - [bfren ecosystem](https://github.com/bfren/docker)
 
-[Node.js](https://nodejs.org), complete with `yarn` and `npm` packages.
+[Node.js](https://nodejs.org), with `npm` also installed.
 
 ## Contents
 
