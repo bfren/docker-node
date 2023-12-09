@@ -4,10 +4,10 @@ set -euo pipefail
 
 docker pull bfren/alpine
 
-BASE_VERSION="5.0.5"
+BASE_VERSION="5.1.0"
 echo "Base: ${BASE_VERSION}"
 
-NODE_VERSIONS="16 17 18 19 20"
+NODE_VERSIONS="16 17 18 19 20 21"
 for V in ${NODE_VERSIONS} ; do
 
     echo "Node.js ${V}"
