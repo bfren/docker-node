@@ -1,4 +1,4 @@
-FROM ghcr.io/bfren/alpine-s6:alpine3.18-5.5.0
+FROM ghcr.io/bfren/alpine-s6:alpine3.21-5.5.0
 
 LABEL org.opencontainers.image.source="https://github.com/bfren/docker-node"
 
@@ -9,7 +9,7 @@ ARG BF_VERSION
 EXPOSE 3000
 
 COPY ./overlay /
-COPY ./18/overlay /
+COPY ./22/overlay /
 
 RUN bf-install
 
