@@ -2,7 +2,7 @@
 
 IMAGE=node
 VERSION=`cat VERSION`
-NODE=${1:-22}
+NODE=${1:-24}
 TAG=${IMAGE}-test
 
 docker buildx build \
