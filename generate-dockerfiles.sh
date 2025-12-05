@@ -7,7 +7,7 @@ docker pull bfren/alpine
 BASE_VERSION="6.0.1"
 echo "Base: ${BASE_VERSION}"
 
-NODE_VERSIONS="16 17 18 19 20 21 22 23"
+NODE_VERSIONS="16 17 18 19 20 21 22 23 24"
 for V in ${NODE_VERSIONS} ; do
 
     echo "Node.js ${V}"

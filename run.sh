@@ -1,7 +1,7 @@
 #!/bin/sh
 
 IMAGE=`cat VERSION`
-NODE=${1:-22}
+NODE=${1:-24}
 
 docker buildx build \
     --load \
