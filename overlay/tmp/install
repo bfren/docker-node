@@ -27,5 +27,5 @@ def main [] {
     $versions | save --force $"(bf env ETC)/INIT_VERSIONS"
 
     # add bf-node module to config
-    bf config use bf-node
+    bf config use_mod bf-node
 }
