@@ -109,8 +109,9 @@ RUN cd /app/live && npm ci --omit=dev
 ## Testing
 
 ```sh
-./test.sh                   # builds Node.js 24 and runs /test
-./test.sh 20                # or any version directory
+./test.nu                   # builds Node.js 24 and runs /test
+./test.nu 20                # or any version directory
+./test.nu --all             # every version, in parallel
 ./run.sh 24                 # builds and opens a shell
 ./generate-dockerfiles.sh   # regenerates the Dockerfiles from Dockerfile.esh
 ```
