@@ -1,17 +1,15 @@
 use bf
+use bf-node
 bf env load
 
 # Set environment variables
 def main [] {
-    # app directories
-    let app = "/app"
-    let app_live = $"($app)/live"
-    bf env set NODE_APP $app
-    bf env set NODE_APP_LIVE $app_live
-    bf env set NODE_APP_PUBLISH $"($app)/publish"
-
-    # run file
-    bf env set NODE_RUN $"($app_live)/index.js"
+    # app directories and run file
+    let paths = bf-node app paths
+    bf env set NODE_APP $paths.app
+    bf env set NODE_APP_LIVE $paths.live
+    bf env set NODE_APP_PUBLISH $paths.publish
+    bf env set NODE_RUN $paths.run
 
     # return nothing
     return
