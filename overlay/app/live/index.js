@@ -1,8 +1,8 @@
 // Import http module
 const http = require('http');
 
-// Hosting values
-const hostname = '127.0.0.1';
+// Hosting values - listen on all interfaces so the port can be published
+const hostname = '0.0.0.0';
 const port = 3000;
 
 // Create server
