@@ -91,7 +91,7 @@ On every start the Node.js and `npm` versions are written to the log, and everyt
 
 If your app crashes (exits with an error), the container stops - set a `restart` policy so Docker starts it again. If it exits cleanly, S6 starts it again inside the container.
 
-The health check is the base image's, which checks cron is running - it doesn't check your app. To check your app, replace `/usr/bin/bf/bf-healthcheck` in your own image.
+The health check is the base image's, which checks cron is running - it doesn't check your app. To check your app, add a script to `/etc/bf/health.d` in your own image (see [Alpine + S6](https://github.com/bfren/docker-alpine-s6#health-checks)).
 
 ## Building on this image
 
