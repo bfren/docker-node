@@ -1,6 +1,6 @@
 # Node.js
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-node) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fnode) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fnode) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bfren/docker-node/dev.yml?branch=main)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-node) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fnode) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fnode) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bfren/docker-node/build.yml?branch=main)
 
 [Docker Hub](https://hub.docker.com/r/bfren/node) - [Quay.io](https://quay.io/repository/bfren/node) - [bfren ecosystem](https://github.com/bfren/docker)
 
@@ -17,7 +17,7 @@ With your app (including `node_modules`) in `./app`, and `index.js` listening on
 ```yaml
 services:
   app:
-    image: quay.io/bfren/node:node24-4.2
+    image: quay.io/bfren/node:node24-5.0
     restart: unless-stopped
     ports:
       - "127.0.0.1:3000:3000"
@@ -40,24 +40,23 @@ Your app must listen on `0.0.0.0` (all interfaces), not `127.0.0.1` - otherwise 
 
 ## Tags
 
-Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/node`) for `linux/amd64` and `linux/arm64`.
+Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/node`) for `linux/amd64`, `linux/arm/v7` and `linux/arm64`.
 
 | Tag               | Example           | Use when                                        |
 | ----------------- | ----------------- | ----------------------------------------------- |
 | `nodeN`           | `node24`          | You want the latest image for a Node.js version |
-| `nodeN-MAJOR`     | `node24-4`        | You want updates, but not breaking changes      |
-| `nodeN-MINOR`     | `node24-4.2`      | You want fixes only - **recommended**           |
-| `nodeN-VERSION`   | `node24-4.2.6`    | You want to pin this image exactly              |
-| `nodeN.M`         | `node24.18`       | You want an exact Node.js release               |
-| `nodeN.M-VERSION` | `node24.18-4.2.6` | You want to pin both                            |
-| `latest`, `4.2.6` |                   | As above, on Node.js 24                         |
+| `nodeN-MAJOR`     | `node24-5`        | You want updates, but not breaking changes      |
+| `nodeN-MINOR`     | `node24-5.0`      | You want fixes only - **recommended**           |
+| `nodeN-VERSION`   | `node24-5.0.1`    | You want to pin this image exactly              |
+| `nodeN.M`         | `node24.22`       | You want an exact Node.js release               |
+| `nodeN.M-VERSION` | `node24.22-5.0.1` | You want to pin both                            |
 
 | Node.js | Release | Alpine | Security support ends |
 | ------- | ------- | ------ | --------------------- |
-| 26      | 26.5.1  | 3.24   | 2029-04-30 (LTS)      |
-| 24      | 24.18.1 | 3.24   | 2028-04-30 (LTS)      |
+| 26      | 26.12.1 | 3.24   | 2029-04-30 (LTS)      |
+| 24      | 24.22.1 | 3.24   | 2028-04-30 (LTS)      |
 | 23      | 23.11.1 | 3.22   | ended 2025-06-01      |
-| 22      | 22.23.2 | 3.22   | 2027-04-30 (LTS)      |
+| 22      | 22.23.4 | 3.22   | 2027-04-30 (LTS)      |
 | 21      | 21.7.3  | 3.20   | ended 2024-06-01      |
 | 20      | 20.15.1 | 3.20   | ended 2026-04-30      |
 
@@ -94,7 +93,7 @@ The health check is the base image's, which checks cron is running - it doesn't 
 Copy your app into `/app/live` and install its dependencies when the image is built:
 
 ```dockerfile
-FROM quay.io/bfren/node:node24-4.2
+FROM quay.io/bfren/node:node24-5.0
 
 COPY ./app /app/live
 RUN cd /app/live && npm ci --omit=dev
