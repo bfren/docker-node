@@ -75,7 +75,7 @@ jobs:
             BF_PUBLISHING=1
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: true
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
             bfren/node:node${{ matrix.node }}
             bfren/node:node${{ matrix.node }}-${{ steps.version_major.outputs.contents }}
@@ -102,7 +102,7 @@ jobs:
             BF_PUBLISHING=1
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: true
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
             bfren/node:latest
             bfren/node:${{ steps.version.outputs.contents }}

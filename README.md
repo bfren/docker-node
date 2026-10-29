@@ -40,7 +40,7 @@ Your app must listen on `0.0.0.0` (all interfaces), not `127.0.0.1` - otherwise 
 
 ## Tags
 
-Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/node`) for `linux/amd64` and `linux/arm64`.
+Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/node`) for `linux/amd64`, `linux/arm/v7` and `linux/arm64`.
 
 | Tag               | Example           | Use when                                        |
 | ----------------- | ----------------- | ----------------------------------------------- |
