@@ -31,7 +31,7 @@ Your app must listen on `0.0.0.0` (all interfaces), not `127.0.0.1` - otherwise 
 
 ## Features
 
-* 🟩 Node.js 16 to 26 - choose with the image tag
+* 🟩 Node.js 20 to 26 - choose with the image tag
 * 📦 `npm` installed
 * 🧭 Your app runs under S6 supervision as `node` (UID 1000), not root
 * 🛑 The container stops if your app crashes, so Docker can restart it
@@ -60,10 +60,6 @@ Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/no
 | 22      | 22.23.2 | 3.22   | 2027-04-30 (LTS)      |
 | 21      | 21.7.3  | 3.20   | ended 2024-06-01      |
 | 20      | 20.15.1 | 3.20   | ended 2026-04-30      |
-| 19      | 19.7.0  | 3.17   | ended 2023-06-01      |
-| 18      | 18.20.1 | 3.18   | ended 2025-04-30      |
-| 17      | 17.9.0  | 3.15   | ended 2022-06-01      |
-| 16      | 16.20.2 | 3.16   | ended 2023-09-11      |
 
 Use an LTS version for anything long-lived - see the [Node.js release schedule](https://nodejs.org/en/about/previous-releases). Images for versions that have ended are still built, but get no Node.js fixes.
 
