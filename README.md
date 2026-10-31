@@ -17,7 +17,7 @@ With your app (including `node_modules`) in `./app`, and `index.js` listening on
 ```yaml
 services:
   app:
-    image: quay.io/bfren/node:node24-4.2
+    image: quay.io/bfren/node:node24-6.0
     restart: unless-stopped
     ports:
       - "127.0.0.1:3000:3000"
@@ -45,19 +45,19 @@ Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/no
 | Tag               | Example           | Use when                                        |
 | ----------------- | ----------------- | ----------------------------------------------- |
 | `nodeN`           | `node24`          | You want the latest image for a Node.js version |
-| `nodeN-MAJOR`     | `node24-4`        | You want updates, but not breaking changes      |
-| `nodeN-MINOR`     | `node24-4.2`      | You want fixes only - **recommended**           |
-| `nodeN-VERSION`   | `node24-4.2.6`    | You want to pin this image exactly              |
-| `nodeN.M`         | `node24.18`       | You want an exact Node.js release               |
-| `nodeN.M-VERSION` | `node24.18-4.2.6` | You want to pin both                            |
-| `latest`, `4.2.6` |                   | As above, on Node.js 24                         |
+| `nodeN-MAJOR`     | `node24-6`        | You want updates, but not breaking changes      |
+| `nodeN-MINOR`     | `node24-6.0`      | You want fixes only - **recommended**           |
+| `nodeN-VERSION`   | `node24-6.0.0`    | You want to pin this image exactly              |
+| `nodeN.M`         | `node24.22`       | You want an exact Node.js release               |
+| `nodeN.M-VERSION` | `node24.22-6.0.0` | You want to pin both                            |
+| `latest`, `6.0.0` |                   | As above, on Node.js 24                         |
 
 | Node.js | Release | Alpine | Security support ends |
 | ------- | ------- | ------ | --------------------- |
-| 26      | 26.5.1  | 3.24   | 2029-04-30 (LTS)      |
-| 24      | 24.18.1 | 3.24   | 2028-04-30 (LTS)      |
+| 26      | 26.12.1 | 3.24   | 2029-04-30 (LTS)      |
+| 24      | 24.22.1 | 3.24   | 2028-04-30 (LTS)      |
 | 23      | 23.11.1 | 3.22   | ended 2025-06-01      |
-| 22      | 22.23.2 | 3.22   | 2027-04-30 (LTS)      |
+| 22      | 22.23.4 | 3.22   | 2027-04-30 (LTS)      |
 | 21      | 21.7.3  | 3.20   | ended 2024-06-01      |
 | 20      | 20.15.1 | 3.20   | ended 2026-04-30      |
 
@@ -94,7 +94,7 @@ The health check is the base image's, which checks cron is running - it doesn't 
 Copy your app into `/app/live` and install its dependencies when the image is built:
 
 ```dockerfile
-FROM quay.io/bfren/node:node24-4.2
+FROM quay.io/bfren/node:node24-6.0
 
 COPY ./app /app/live
 RUN cd /app/live && npm ci --omit=dev
