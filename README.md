@@ -50,7 +50,8 @@ Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/no
 | `nodeN-VERSION`   | `node24-6.0.0`    | You want to pin this image exactly              |
 | `nodeN.M`         | `node24.22`       | You want an exact Node.js release               |
 | `nodeN.M-VERSION` | `node24.22-6.0.0` | You want to pin both                            |
-| `latest`, `6.0.0` |                   | As above, on Node.js 24                         |
+
+There is no `latest` tag - always choose a Node.js version.
 
 | Node.js | Release | Alpine | Security support ends |
 | ------- | ------- | ------ | --------------------- |

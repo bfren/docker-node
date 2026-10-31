@@ -31,10 +31,6 @@ jobs:
         node${FOLDER}-${VERSION}
         node${NODE_MINOR}
         node${NODE_MINOR}-${VERSION}
-      default-folder: "24"
-      default-tags: |
-        latest
-        ${VERSION}
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
