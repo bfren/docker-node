@@ -1,6 +1,6 @@
 # Node.js
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-node) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fnode) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fnode) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bfren/docker-node/dev.yml?branch=main)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-node) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fnode) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fnode) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bfren/docker-node/build.yml?branch=main)
 
 [Docker Hub](https://hub.docker.com/r/bfren/node) - [Quay.io](https://quay.io/repository/bfren/node) - [bfren ecosystem](https://github.com/bfren/docker)
 
