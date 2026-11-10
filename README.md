@@ -47,9 +47,9 @@ Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/no
 | `nodeN`           | `node24`          | You want the latest image for a Node.js version |
 | `nodeN-MAJOR`     | `node24-6`        | You want updates, but not breaking changes      |
 | `nodeN-MINOR`     | `node24-6.0`      | You want fixes only - **recommended**           |
-| `nodeN-VERSION`   | `node24-6.0.1`    | You want to pin this image exactly              |
+| `nodeN-VERSION`   | `node24-6.0.2`    | You want to pin this image exactly              |
 | `nodeN.M`         | `node24.22`       | You want an exact Node.js release               |
-| `nodeN.M-VERSION` | `node24.22-6.0.1` | You want to pin both                            |
+| `nodeN.M-VERSION` | `node24.22-6.0.2` | You want to pin both                            |
 
 There is no `latest` tag - always choose a Node.js version.
 
