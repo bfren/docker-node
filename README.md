@@ -53,6 +53,8 @@ Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/no
 | `nodeN.M`         | `node24.22`       | You want an exact Node.js release               |
 | `nodeN.M-VERSION` | `node24.22-6.0.3` | You want to pin both                            |
 
+A new `MAJOR` version means a breaking change. Before moving to one, read the [changelog](CHANGELOG.md), where each breaking change is marked **Breaking**.
+
 There is no `latest` tag - always choose a Node.js version.
 
 | Node.js | Release | Alpine | Security support ends |
