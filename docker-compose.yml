@@ -1,0 +1,8 @@
+services:
+  app:
+    image: quay.io/bfren/node:node24-6.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./app:/app/live

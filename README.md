@@ -25,6 +25,8 @@ services:
       - ./app:/app/live
 ```
 
+This example is also in [`docker-compose.yml`](docker-compose.yml).
+
 Run `docker compose up -d`, then open `http://127.0.0.1:3000`. Without your own app, a welcome page is shown.
 
 Your app must listen on `0.0.0.0` (all interfaces), not `127.0.0.1` - otherwise it can't be reached through the published port.
