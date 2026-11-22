@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `docker-compose.yml` - the Quickstart example as a file you can copy.
 
+### Changed
+
+- Node.js updated to 22.23.5, 24.22.3 and 26.13.1.
+
 ## [6.0.2] - 2026-11-10
 
 ### Changed
