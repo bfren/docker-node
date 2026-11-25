@@ -25,6 +25,8 @@ services:
       - ./app:/app/live
 ```
 
+This example is also in [`docker-compose.yml`](docker-compose.yml).
+
 Run `docker compose up -d`, then open `http://127.0.0.1:3000`. Without your own app, a welcome page is shown.
 
 Your app must listen on `0.0.0.0` (all interfaces), not `127.0.0.1` - otherwise it can't be reached through the published port.
@@ -47,18 +49,20 @@ Images are published to Docker Hub (`bfren/node`) and Quay.io (`quay.io/bfren/no
 | `nodeN`           | `node24`          | You want the latest image for a Node.js version |
 | `nodeN-MAJOR`     | `node24-6`        | You want updates, but not breaking changes      |
 | `nodeN-MINOR`     | `node24-6.0`      | You want fixes only - **recommended**           |
-| `nodeN-VERSION`   | `node24-6.0.2`    | You want to pin this image exactly              |
+| `nodeN-VERSION`   | `node24-6.0.3`    | You want to pin this image exactly              |
 | `nodeN.M`         | `node24.22`       | You want an exact Node.js release               |
-| `nodeN.M-VERSION` | `node24.22-6.0.2` | You want to pin both                            |
+| `nodeN.M-VERSION` | `node24.22-6.0.3` | You want to pin both                            |
+
+A new `MAJOR` version means a breaking change. Before moving to one, read the [changelog](CHANGELOG.md), where each breaking change is marked **Breaking**.
 
 There is no `latest` tag - always choose a Node.js version.
 
 | Node.js | Release | Alpine | Security support ends |
 | ------- | ------- | ------ | --------------------- |
-| 26      | 26.12.1 | 3.24   | 2029-04-30 (LTS)      |
-| 24      | 24.22.1 | 3.24   | 2028-04-30 (LTS)      |
+| 26      | 26.13.1 | 3.24   | 2029-04-30 (LTS)      |
+| 24      | 24.22.3 | 3.24   | 2028-04-30 (LTS)      |
 | 23      | 23.11.1 | 3.22   | ended 2025-06-01      |
-| 22      | 22.23.4 | 3.22   | 2027-04-30 (LTS)      |
+| 22      | 22.23.5 | 3.22   | 2027-04-30 (LTS)      |
 | 21      | 21.7.3  | 3.20   | ended 2024-06-01      |
 | 20      | 20.15.1 | 3.20   | ended 2026-04-30      |
 
